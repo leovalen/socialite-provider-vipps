@@ -16,7 +16,7 @@ class Provider extends AbstractProvider
     /**
      * {@inheritdoc}
      */
-    protected $scopes = ['openid', 'name', 'birthDate', 'phoneNumber'];
+    protected $scopes = ['openid', 'phoneNumber'];
 
     /**
      * {@inheritdoc}
@@ -28,7 +28,7 @@ class Provider extends AbstractProvider
      */
     protected function getAuthUrl($state)
     {
-        return $this->buildAuthUrlFromBase('https://apitest.vipps.no/access-management-1.0/access/oauth2/auth', $state);
+        return $this->buildAuthUrlFromBase('https://api.vipps.no/access-management-1.0/access/oauth2/auth', $state);
     }
 
     /**
@@ -36,7 +36,7 @@ class Provider extends AbstractProvider
      */
     protected function getTokenUrl()
     {
-        return 'https://apitest.vipps.no/access-management-1.0/access/oauth2/token';
+        return 'https://api.vipps.no/access-management-1.0/access/oauth2/token';
     }
 
     /**
@@ -44,7 +44,7 @@ class Provider extends AbstractProvider
      */
     protected function getUserByToken($token)
     {
-        $response = $this->getHttpClient()->get('https://apitest.vipps.no/access-management-1.0/access/userinfo', [
+        $response = $this->getHttpClient()->get('https://api.vipps.no/access-management-1.0/access/userinfo', [
             'headers' => [
                 'Authorization' => 'Bearer '.$token,
             ],
